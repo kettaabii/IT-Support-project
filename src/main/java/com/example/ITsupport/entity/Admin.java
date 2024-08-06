@@ -1,6 +1,7 @@
 package com.example.ITsupport.entity;
 
 import com.example.ITsupport.enums.role;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,11 +11,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@DiscriminatorValue("ADMIN")
 public class Admin extends Person{
-    @Enumerated(EnumType.STRING)
-    private com.example.ITsupport.enums.role role;
+    @Override
+    public role getRole() {
+        return role.ADMIN;
+    }
 }

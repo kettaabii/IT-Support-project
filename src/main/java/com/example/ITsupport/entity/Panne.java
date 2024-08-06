@@ -1,11 +1,16 @@
 package com.example.ITsupport.entity;
 
-import com.example.ITsupport.enums.StatusPanne;
+
 import com.example.ITsupport.enums.TypePanne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @Entity
 public class Panne {
     @Id
@@ -18,7 +23,10 @@ public class Panne {
     private TypePanne typePanne;
     private LocalDateTime dateSignalement;
     private LocalDateTime dateResolution;
-    @ManyToOne
-    private Material material;
+
+    @ManyToOne()
+    @JoinColumn(name = "idMaterial")
+    @JsonIgnore
+    private Equipement material;
 
 }

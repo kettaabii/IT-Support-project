@@ -1,15 +1,30 @@
 package com.example.ITsupport.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
+import com.example.ITsupport.enums.role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity @AllArgsConstructor @NoArgsConstructor @Getter @Setter
+import java.util.List;
+
+@Entity  @Getter @Setter
+
 public class User extends Person {
-    @Enumerated(EnumType.STRING)
-    private com.example.ITsupport.enums.role role;
+
+
+    @Override
+    public com.example.ITsupport.enums.role getRole() {
+        return role.USER;
+    }
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Ticket> tickets;
+
+    @OneToMany
+    @JsonIgnore
+    private List<Equipement> equipements ;
+
+
 }
