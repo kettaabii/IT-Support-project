@@ -16,15 +16,16 @@ import java.util.List;
 public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idMaterial;
+    @Column(name = "material-id")
+    private Integer materialId;
     private String materialName;
     @Enumerated(EnumType.STRING)
     private StatusMat status;
 
 
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "equipement")
     @JsonIgnore
-    List<Panne> panneList;
+    List<EquipementPanne> panneMaterialList;
 
     @ManyToOne
     @JsonIgnore

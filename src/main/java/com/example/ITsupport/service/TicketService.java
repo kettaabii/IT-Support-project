@@ -19,16 +19,6 @@ public class TicketService {
     public Ticket newTicket(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-    public Ticket signalerpanne(Panne panne, Integer idMat){
-        Equipement equipement = equipementService.getEquipementById(idMat);
-        equipement.setStatus(StatusMat.PANNE);
-        panne.setMaterial(equipement);
-        Ticket ticket = new Ticket();
-        ticket.setPanne(panne);
-        ticket.setDateCreation(panne.getDateSignalement());
-        ticket.setStatusTicket(ENATTENTE);
 
-        return  ticketRepository.save(ticket);
-    }
 
 }

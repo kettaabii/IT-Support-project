@@ -1,6 +1,7 @@
 package com.example.ITsupport.service;
 
 import com.example.ITsupport.entity.Equipement;
+import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.repository.EquipementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 public class EquipementService {
     @Autowired
     private EquipementRepository equipementRepository;
+
 
     public Equipement addNewEquipement(Equipement equipment) {
         equipementRepository.save(equipment);
@@ -39,4 +41,7 @@ public class EquipementService {
         return equipementRepository.findById(equipementId).get();
     }
 
+    public Equipement saveEquipement(Equipement equipment) {
+        return equipementRepository.save(equipment);
+    }
 }

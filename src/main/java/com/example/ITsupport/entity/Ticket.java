@@ -28,6 +28,6 @@ public class Ticket {
     @ManyToOne
     private Technician technician;
 
-    @OneToOne
-    private Panne panne;
+    @ManyToOne
+    private EquipementPanne equipementPanne;
 }

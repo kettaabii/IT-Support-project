@@ -10,12 +10,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @Entity
 public class Panne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "panne-id")
+    private Integer panneId;
     private String panneTitle;
     private String panneDescription;
 
@@ -24,9 +27,12 @@ public class Panne {
     private LocalDateTime dateSignalement;
     private LocalDateTime dateResolution;
 
-    @ManyToOne()
-    @JoinColumn(name = "idMaterial")
+    @OneToMany(mappedBy = "panne")
     @JsonIgnore
-    private Equipement material;
+    private List<EquipementPanne> ListePanneEquipement;
+
+
+
+
 
 }
