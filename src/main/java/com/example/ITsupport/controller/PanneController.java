@@ -26,17 +26,30 @@ public class PanneController {
         return panneService.newPanne(panne);
     }
 
+
     @PostMapping("/admin/setAsCommunePanne")
-    public Panne setAsCommunePanne(@RequestBody PanneEquipementkey panne){
-       Panne panne1 =new Panne();
-        var desc =panne.getDescription();
-       panne1.setPanneDescription(desc);
-        var panne3 =panneService.newPanne(panne1);
-       panne.setPanneId(panne3.getPanneId());
-       equipementPanneService.enregistrer(panne);
+    public Panne setAsCommunePanne(@RequestBody PanneEquipementkey panne) {
+        Panne nouvellePanne = new Panne();
+        nouvellePanne.setPanneDescription(panne.getDescription());
+        nouvellePanne = panneService.newPanne(nouvellePanne);
 
+        PanneEquipementkey key = new PanneEquipementkey();
+        key.setMaterialId(panne.getMaterialId());
+        key.setPanneId(nouvellePanne.getPanneId());
+        key.setDescription(panne.getDescription());
+        panneService.enregistrer(key, panne.getDescription());
 
-        return  panne3;
+        return nouvellePanne;
     }
+
+    @PutMapping ("/admin/upatePanne/{id}")
+    public String updatePanne(@PathVariable Integer id, @RequestBody Panne panne){
+
+        panneService.updatePanne(id ,panne);
+
+        return "updated";
+    }
+
+
 
 }

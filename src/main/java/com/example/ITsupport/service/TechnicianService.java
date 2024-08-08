@@ -12,34 +12,39 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
-
-public class PersonService  {
-
-
+public class TechnicianService {
+    @Autowired
+    private TechnicianRepository technicianRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private PersonRepository personRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
+    public Technician findTechnicianById(Integer technicianId) {
+        return technicianRepository.findById(technicianId).orElse(null);
+    }
     @Transactional
     public void signUp(SignupRequest signupRequest) {
         String hashedPassword = passwordEncoder.encode(signupRequest.password());
-        Person user = new Admin(); // Default user type
+        Technician user = new Technician();
         user.setUsername(signupRequest.username());
         user.setEmail(signupRequest.email());
         user.setPhone(signupRequest.phone());
         user.setPassword(hashedPassword);
-        user.setRole(role.ADMIN);
+        user.setRole(role.TECHNICIAN);
 
-        personRepository.save(user);
+        technicianRepository.save(user);
     }
 
-    public Person findUserByUsername(String username) {
-        return personRepository.findByUsername(username);
+    public Technician updateTechnician(Integer id , SignupRequest technicianRequest) {
+        Technician technician = technicianRepository.findById(id).get();
+        technician.setUsername(technicianRequest.username());
+        technician.setEmail(technicianRequest.email());
+        technician.setPhone(technicianRequest.phone());
+        technician.setPassword(technicianRequest.password());
+        return technicianRepository.save(technician);
     }
 
 }

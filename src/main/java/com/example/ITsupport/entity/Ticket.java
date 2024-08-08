@@ -1,7 +1,6 @@
 package com.example.ITsupport.entity;
 
 import com.example.ITsupport.enums.StatusTicket;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Entity @AllArgsConstructor @NoArgsConstructor@Setter @Getter
+@Entity @AllArgsConstructor @NoArgsConstructor @Setter @Getter
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -24,8 +24,7 @@ public class Panne {
 
     @Enumerated(EnumType.STRING)
     private TypePanne typePanne;
-    private LocalDateTime dateSignalement;
-    private LocalDateTime dateResolution;
+
 
     @OneToMany(mappedBy = "panne")
     @JsonIgnore

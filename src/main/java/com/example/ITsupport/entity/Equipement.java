@@ -32,4 +32,5 @@ public class Equipement {
     User utilisateur ;
 
 
+
 }

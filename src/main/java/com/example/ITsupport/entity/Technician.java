@@ -10,13 +10,15 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Technician extends Person {
     @OneToMany(mappedBy = "technician")
     private List<Ticket> tickets;
+
 
     @Override
     public role getRole() {
