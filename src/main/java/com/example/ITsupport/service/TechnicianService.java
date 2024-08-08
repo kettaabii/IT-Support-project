@@ -47,4 +47,11 @@ public class TechnicianService {
         return technicianRepository.save(technician);
     }
 
+    public String removeTechnician(Integer id)
+    {
+        Technician technician = technicianRepository.findById(id).get();
+        technicianRepository.delete(technician);
+        return "delete success";
+    }
+
 }

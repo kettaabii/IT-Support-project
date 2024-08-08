@@ -22,6 +22,12 @@ public class TechnicianController {
         return technicianService.updateTechnician(id ,technician);
     }
 
-    
+    @DeleteMapping("admin/deleteTechnician/{id}")
+    public String deleteTechnician(@PathVariable Integer id) {
+        technicianService.removeTechnician(id);
+        return "success" ;
+    }
+
+
 
 }
