@@ -14,8 +14,13 @@ import java.util.List;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
-   List<Ticket> findAllByTechnician(Technician technician);
-  // List<Ticket> findAllByTechnicianAnAndStatusTicketEnattente(Technician technician, StatusTicket statusTicket);
+
+
+
+
+    List<Ticket> findAllByTechnician(Technician technician);
+ // List<Ticket> findAllByTechnicianAnAndStatusTicketEnattente(Technician technician, StatusTicket statusTicket);
+  List<Ticket> findAllByTechnicianAndStatusTicket(Technician technician, StatusTicket statusTicket);
 //   List<Ticket> findAllByEquipementMaterialId(Integer equipementMaterialId);
 //   List<Ticket> findAllByEquipement_Material_Id(Integer equipement_Material_Id);
 //   List<Ticket> findAllByEquipementPanne_Equipement(Equipement equipement);
@@ -25,4 +30,5 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 //  @Query("SELECT new com.example.ITsupport.Dto.TicketHistoryDTO(t.dateCreation, t.equipementPanne.panne.panneDescription, t.equipementPanne.id.description) " +
 //          "FROM Ticket t WHERE t.equipementPanne.equipement.materialId = :materialId")
 //  List<Ticket> findTicketHistoryForEquipement(@Param("materialId") Integer materialId);
+
 }

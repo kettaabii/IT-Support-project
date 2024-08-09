@@ -22,13 +22,17 @@ public class TicketController {
     public List<Ticket> getTicketsByTec(@PathVariable Integer id) {
         return ticketService.getAllTicketsByTechnician(id);
     }
-//    @GetMapping("technician/AssignedTickets/{id}")
-//    public List<Ticket> getAssignedTickets(@PathVariable Integer id) {
-//        return ticketService.getAssignedTickets(id);
-//    }
+    @GetMapping("technician/AssignedTickets/{id}")
+    public List<Ticket> getAssignedTickets(@PathVariable Integer id) {
+        return ticketService.getAssignedTickets(id);
+    }
     @GetMapping("admin/TicketsHistoryForMat/{id}")
     public List<TicketHistoryDTO> getTicketsHistoryForMat(@PathVariable Integer id) {
         return ticketService.findTicketHistoryForMat(id);
+    }
+    @PutMapping("technician/AcceptTicket/{id}")
+    public String acceptTicket(@PathVariable Integer id) {
+        return ticketService.AcceptTicket(id);
     }
 
 

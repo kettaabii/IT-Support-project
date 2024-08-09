@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.example.ITsupport.enums.StatusTicket.ABOUTIT;
-import static com.example.ITsupport.enums.StatusTicket.ENATTENTE;
+import static com.example.ITsupport.enums.StatusTicket.*;
 
 @Service
 public class TicketService {
@@ -50,20 +49,24 @@ public class TicketService {
         return ticketRepository.findAllByTechnician(technician);
     }
 
-//    public List<Ticket> getAssignedTickets(Integer id) {
-//        Technician technician=technicianRepository.findById(id).get();
-//        StatusTicket statusTicket=ENATTENTE;
-//        return ticketRepository.findAllByTechnicianAnAndStatusTicketEnattente(technician,statusTicket);
-//    }
+    public List<Ticket> getAssignedTickets(Integer id) {
+        Technician technician=technicianRepository.findById(id).get();
+        StatusTicket statusTicket=ABOUTIT;
+        return ticketRepository.findAllByTechnicianAndStatusTicket(technician,statusTicket);
+    }
 
 
-//    public List<TicketHistoryDTO> findAllForMat(Integer id) {
-//        List<Ticket> tickets = ticketRepository.findTicketHistoryForEquipement(id);
-//        return ticketMapper.ticketsToTicketHistoryDTOs(tickets);
-//    }
+
     public List<TicketHistoryDTO> findTicketHistoryForMat(Integer materialId) {
         List<Ticket> tickets = ticketRepository.findAllByEquipementPanne_Equipement_MaterialId(materialId);
         return ticketMapper.ticketsToTicketHistoryDTOs(tickets);
     }
 
+    public String AcceptTicket(Integer id) {
+       Ticket ticket=ticketRepository.findById(id).get();
+       ticket.setStatusTicket(ENREPARATION);
+       ticketRepository.save(ticket);
+       return "Ticket accepted";
+
+    }
 }

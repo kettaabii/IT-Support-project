@@ -24,9 +24,11 @@ public class Ticket {
 
 
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     private Technician technician;
 
     @ManyToOne
