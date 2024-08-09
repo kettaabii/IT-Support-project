@@ -7,7 +7,10 @@ import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.service.EquipementPanneService;
 import com.example.ITsupport.service.PanneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class PanneController {
@@ -48,6 +51,12 @@ public class PanneController {
         panneService.updatePanne(id ,panne);
 
         return "updated";
+    }
+
+    @GetMapping("/admin/allPanne")
+    public ResponseEntity<List<Panne>> getAllPannes() {
+        List<Panne> pannes = panneService.findAll();
+        return ResponseEntity.ok(pannes);
     }
 
 

@@ -1,8 +1,10 @@
 package com.example.ITsupport.service;
 
 import com.example.ITsupport.entity.Equipement;
+import com.example.ITsupport.entity.User;
 import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.repository.EquipementRepository;
+import com.example.ITsupport.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.List;
 public class EquipementService {
     @Autowired
     private EquipementRepository equipementRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     public Equipement addNewEquipement(Equipement equipment) {
@@ -43,5 +47,25 @@ public class EquipementService {
 
     public Equipement saveEquipement(Equipement equipment) {
         return equipementRepository.save(equipment);
+    }
+
+    public String AssignEquipemeToUser(Integer idmat, Integer idUser) {
+        Equipement equipement = equipementRepository.findById(idmat).get();
+        System.out.println(equipement.getMaterialName()+"methode assigner Material  id");
+        User user = userRepository.findById(idUser).get();
+        System.out.println(user.getId()+"methode assigner user id");
+        equipement.setUtilisateur(user);
+        equipementRepository.save(equipement);
+        return "sucessfully assigned";
+    }
+
+    public List<Equipement> EquipementsofUser(Integer id) {
+        User user = userRepository.findById(id).get();
+        System.out.println("luser " + user.getId());
+        return equipementRepository.findAllByUtilisateurIs(user);
+    }
+
+    public Equipement findEquipementById(Integer id) {
+        return equipementRepository.findById(id).get();
     }
 }

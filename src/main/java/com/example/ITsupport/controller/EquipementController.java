@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -37,9 +38,30 @@ public class EquipementController {
         List<Equipement> equipements = equipementService.getAllEquipements();
         return new ResponseEntity<>(equipements, HttpStatus.OK);
    }
+   @PutMapping("admin/AssignEquipement{idMat}/ToUser/{idUser}")
+    public ResponseEntity<Equipement> assignEquipementToUser(@PathVariable("idMat") Integer idmat ,@PathVariable("idUser") Integer idUser) {
+       equipementService.AssignEquipemeToUser(idmat, idUser);
+       return new ResponseEntity<>(HttpStatus.OK);
+   }
+    @GetMapping("admin/equipementPerUser/{id}")
+    public ResponseEntity<List<Equipement>> getEquipementPerUser(@PathVariable Integer id) {
+        List<Equipement> equipements = equipementService.EquipementsofUser(id);
+        System.out.println(equipements.size());
+        return new ResponseEntity<>(equipements, HttpStatus.OK);
+    }
+
+    @GetMapping("/admin/getEquipmentById/{id}")
+    public ResponseEntity<Equipement> getEquipementById(@PathVariable Integer id) {
+        Equipement equipement = equipementService.findEquipementById(id);
+        return ResponseEntity.ok(equipement);
+    }
+
+
+
+   }
 
 
 
 
 
-}
+

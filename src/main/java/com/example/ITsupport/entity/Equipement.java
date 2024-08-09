@@ -28,6 +28,7 @@ public class Equipement {
     List<EquipementPanne> panneMaterialList;
 
     @ManyToOne
+
     @JsonIgnore
     User utilisateur ;
 

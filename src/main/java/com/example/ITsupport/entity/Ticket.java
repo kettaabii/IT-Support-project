@@ -1,6 +1,7 @@
 package com.example.ITsupport.entity;
 
 import com.example.ITsupport.enums.StatusTicket;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private StatusTicket statusTicket;
     private LocalDateTime dateCreation;
+    private LocalDateTime dateReception;
     private LocalDateTime dateCloture;
     private int priorite;
 
@@ -28,5 +30,6 @@ public class Ticket {
     private Technician technician;
 
     @ManyToOne
+    @JsonIgnore
     private EquipementPanne equipementPanne;
 }

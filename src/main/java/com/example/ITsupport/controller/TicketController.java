@@ -1,11 +1,12 @@
 package com.example.ITsupport.controller;
 
+import com.example.ITsupport.Dto.TicketHistoryDTO;
+import com.example.ITsupport.entity.Ticket;
 import com.example.ITsupport.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TicketController {
@@ -17,5 +18,18 @@ public class TicketController {
     public void assignTicketToTechnician(@RequestParam Integer idticket ,@RequestParam Integer idtechnician) {
         ticketService.assignTicketToTechnician(idticket, idtechnician);
     }
+    @GetMapping("admin/getTicketsByTec/{id}")
+    public List<Ticket> getTicketsByTec(@PathVariable Integer id) {
+        return ticketService.getAllTicketsByTechnician(id);
+    }
+//    @GetMapping("technician/AssignedTickets/{id}")
+//    public List<Ticket> getAssignedTickets(@PathVariable Integer id) {
+//        return ticketService.getAssignedTickets(id);
+//    }
+    @GetMapping("admin/TicketsHistoryForMat/{id}")
+    public List<TicketHistoryDTO> getTicketsHistoryForMat(@PathVariable Integer id) {
+        return ticketService.findTicketHistoryForMat(id);
+    }
+
 
 }
