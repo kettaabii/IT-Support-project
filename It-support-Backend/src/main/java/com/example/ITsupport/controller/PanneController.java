@@ -19,9 +19,9 @@ public class PanneController {
 
     @Autowired
     private EquipementPanneService equipementPanneService;
-    @PostMapping("/user/signaler")
-    public String signaler(@RequestParam String description,  @RequestParam(required = false) Integer idMat,@RequestParam(required = false) Integer idPanne){
-        return panneService.signalerpanne(description,idMat,idPanne);
+    @PostMapping("/user/signaler/{idUser}")
+    public String signaler(@RequestParam String description,  @RequestParam Integer idMat,@RequestParam Integer idPanne , @PathVariable("idUser") Integer idUser){
+        return panneService.signalerpanne(description,idMat,idPanne,idUser);
 
     }
     @PostMapping("/admin/newPanne")

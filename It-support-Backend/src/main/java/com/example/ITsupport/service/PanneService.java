@@ -6,6 +6,7 @@ import com.example.ITsupport.enums.StatusTicket;
 import com.example.ITsupport.repository.EquipementPanneKeyRepo;
 import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.repository.PanneRepository;
+import com.example.ITsupport.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,11 @@ public class PanneService {
     private EquipementService equipementService;
     @Autowired
     private TicketService ticketService;
+    @Autowired
+    private UserRepository userRepository;
 
-    public String signalerpanne(String description, Integer idMat, Integer idPanne) {
+    public String signalerpanne(String description, Integer idMat, Integer idPanne,Integer idUser) {
+        User user =userRepository.findById(idUser).get();
         Equipement equipement = equipementService.getEquipementById(idMat);
         Panne panne1 = panneRepository.findById(idPanne).orElseThrow(() -> new IllegalArgumentException("Panne not found"));
         System.out.println(panne1.getPanneTitle() + "panne from id : ");
@@ -41,6 +45,7 @@ public class PanneService {
         ticket.setEquipementPanne(equipementPanne);
         ticket.setDateCreation(LocalDateTime.now());
         ticket.setStatusTicket(ENATTENTE);
+        ticket.setUser(user);
 
         equipement.setStatus(StatusMat.PANNE);
         equipementService.saveEquipement(equipement);

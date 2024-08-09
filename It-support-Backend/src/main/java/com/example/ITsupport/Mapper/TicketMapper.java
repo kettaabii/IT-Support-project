@@ -12,6 +12,7 @@ public interface TicketMapper {
     @Mapping(source = "dateCreation", target = "dateSignalement")
     @Mapping(source = "equipementPanne.panne.panneTitle", target = "panneTitre")
     @Mapping(source = "equipementPanne.id.description", target = "panneDescription")
+    @Mapping(source = "statusTicket", target = "statusTicket")
     TicketHistoryDTO ticketToTicketHistoryDTO(Ticket ticket);
     Ticket toEntity(TicketHistoryDTO ticketDto);
 

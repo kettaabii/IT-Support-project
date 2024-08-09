@@ -52,5 +52,7 @@ public class UserService {
     }
 
 
-
+    public User findUserById(Integer id) {
+        return userRepository.findById(id).get();
+    }
 }

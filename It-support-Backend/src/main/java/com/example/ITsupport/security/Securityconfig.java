@@ -50,6 +50,8 @@ public class Securityconfig {
 //                                  .requestMatchers("v3/api-docs/**").permitAll()
 //                                  .requestMatchers("/card/activate/**").permitAll()
                                 .anyRequest().permitAll())
+                              .logout((logout) -> logout.logoutUrl("/logout"))
+
 
 
 

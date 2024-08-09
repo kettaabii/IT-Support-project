@@ -27,6 +27,8 @@ public class TicketService {
     private TechnicianRepository technicianRepository;
     @Autowired
     private TicketMapper ticketMapper ;
+    @Autowired
+    private UserService userService;
 
 
     public Ticket newTicket(Ticket ticket) {
@@ -65,8 +67,17 @@ public class TicketService {
     public String AcceptTicket(Integer id) {
        Ticket ticket=ticketRepository.findById(id).get();
        ticket.setStatusTicket(ENREPARATION);
+       ticket.setDateReception(LocalDateTime.now());
        ticketRepository.save(ticket);
+
        return "Ticket accepted";
 
+    }
+
+    public List<TicketHistoryDTO> getTicketsByUser(Integer id) {
+        User user =userService.findUserById(id);
+        List<Ticket> tickets =ticketRepository.findAllByUser(user);
+        tickets.forEach(ticket -> System.out.println(ticket.getStatusTicket() +"tixketa"));
+        return ticketMapper.ticketsToTicketHistoryDTOs(tickets);
     }
 }
