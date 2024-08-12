@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class PanneController {
     @Autowired
@@ -19,8 +20,8 @@ public class PanneController {
 
     @Autowired
     private EquipementPanneService equipementPanneService;
-    @PostMapping("/user/signaler/{idUser}")
-    public String signaler(@RequestParam String description,  @RequestParam Integer idMat,@RequestParam Integer idPanne , @PathVariable("idUser") Integer idUser){
+    @PostMapping("/user/signaler/{idMat}/{idUser}")
+    public String signaler(@RequestParam String description,  @PathVariable Integer idMat,@RequestParam Integer idPanne , @PathVariable("idUser") Integer idUser){
         return panneService.signalerpanne(description,idMat,idPanne,idUser);
 
     }
@@ -53,7 +54,7 @@ public class PanneController {
         return "updated";
     }
 
-    @GetMapping("/admin/allPanne")
+    @GetMapping("/shared/allPanne")
     public ResponseEntity<List<Panne>> getAllPannes() {
         List<Panne> pannes = panneService.findAll();
         return ResponseEntity.ok(pannes);

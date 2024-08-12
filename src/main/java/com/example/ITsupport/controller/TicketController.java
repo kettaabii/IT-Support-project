@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 public class TicketController {
 
     @Autowired
     private TicketService ticketService;
 
-    @PutMapping("admin/AssignTicketToTechnician/")
-    public void assignTicketToTechnician(@RequestParam Integer idticket ,@RequestParam Integer idtechnician) {
+    @PutMapping("admin/AssignTicket/{idTicket}/ToTechnician/{idtechnician}")
+    public void assignTicketToTechnician(@PathVariable("idTicket") Integer idticket ,@PathVariable Integer idtechnician) {
         ticketService.assignTicketToTechnician(idticket, idtechnician);
     }
     @GetMapping("admin/getTicketsByTec/{id}")
@@ -43,5 +43,8 @@ public class TicketController {
     }
 
 
-
+    @GetMapping("/admin/getPendingTickets")
+    public List<TicketHistoryDTO> getPendingTickets() {
+        return ticketService.getAllPendingTickets();
+    }
 }

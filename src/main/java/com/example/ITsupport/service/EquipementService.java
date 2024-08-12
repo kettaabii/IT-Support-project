@@ -2,6 +2,7 @@ package com.example.ITsupport.service;
 
 import com.example.ITsupport.entity.Equipement;
 import com.example.ITsupport.entity.User;
+import com.example.ITsupport.exeption.EquipmentNotFoundException;
 import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.repository.EquipementRepository;
 import com.example.ITsupport.repository.UserRepository;
@@ -24,7 +25,7 @@ public class EquipementService {
     }
 
     public Equipement modifyEquipement(Integer equipementId ,Equipement equipment) {
-       Equipement equipement1= equipementRepository.findById(equipementId).get();
+       Equipement equipement1= equipementRepository.findById(equipementId).orElseThrow(()->new EquipmentNotFoundException(equipementId) );
        equipement1.setMaterialName(equipment.getMaterialName());
        equipement1.setStatus(equipment.getStatus());
       return equipementRepository.save(equipement1);
@@ -66,6 +67,6 @@ public class EquipementService {
     }
 
     public Equipement findEquipementById(Integer id) {
-        return equipementRepository.findById(id).get();
+        return equipementRepository.findById(id).orElseThrow(() -> new EquipmentNotFoundException(id));
     }
 }

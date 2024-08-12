@@ -80,4 +80,10 @@ public class TicketService {
         tickets.forEach(ticket -> System.out.println(ticket.getStatusTicket() +"tixketa"));
         return ticketMapper.ticketsToTicketHistoryDTOs(tickets);
     }
+
+    public List<TicketHistoryDTO> getAllPendingTickets() {
+        StatusTicket statusTicket =ENATTENTE;
+        List<Ticket> tickets =ticketRepository.findAllByStatusTicket(statusTicket);
+        return ticketMapper.ticketsToTicketHistoryDTOs(tickets);
+    }
 }

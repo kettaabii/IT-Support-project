@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 
 public class Technician extends Person {
+    private Boolean available =true;
     @OneToMany(mappedBy = "technician")
     private List<Ticket> tickets;
 

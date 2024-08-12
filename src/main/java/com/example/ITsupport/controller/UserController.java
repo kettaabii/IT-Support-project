@@ -4,7 +4,7 @@ import com.example.ITsupport.Dto.SignupRequest;
 import com.example.ITsupport.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("*")
 @RestController
 public class UserController {
 

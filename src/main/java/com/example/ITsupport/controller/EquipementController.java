@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Iterator;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class EquipementController {
     @Autowired

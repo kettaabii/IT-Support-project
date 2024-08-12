@@ -2,7 +2,6 @@ package com.example.ITsupport.service;
 
 import com.example.ITsupport.entity.*;
 import com.example.ITsupport.enums.StatusMat;
-import com.example.ITsupport.enums.StatusTicket;
 import com.example.ITsupport.repository.EquipementPanneKeyRepo;
 import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.repository.PanneRepository;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 import static com.example.ITsupport.enums.StatusTicket.*;
 
@@ -34,6 +32,7 @@ public class PanneService {
 
     public String signalerpanne(String description, Integer idMat, Integer idPanne,Integer idUser) {
         User user =userRepository.findById(idUser).get();
+        System.out.println(user.getRole()+"role user signaler panne ");
         Equipement equipement = equipementService.getEquipementById(idMat);
         Panne panne1 = panneRepository.findById(idPanne).orElseThrow(() -> new IllegalArgumentException("Panne not found"));
         System.out.println(panne1.getPanneTitle() + "panne from id : ");

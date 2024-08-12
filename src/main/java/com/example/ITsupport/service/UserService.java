@@ -24,8 +24,9 @@ public class UserService {
 
 
     public String newUser(SignupRequest signupRequest){
-        String password =strings().size(6).types(ALPHA_NUMERIC, HEX).get();
-       String hashedPassword = passwordEncoder.encode(password);
+//        String password =strings().size(6).types(ALPHA_NUMERIC, HEX).get();
+        String hashedPassword = passwordEncoder.encode(signupRequest.password());
+//       String hashedPassword = passwordEncoder.encode(password);
         User user = new User();
         user.setUsername(signupRequest.username());
         user.setPhone(signupRequest.phone());

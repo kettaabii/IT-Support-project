@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 @Component
 public interface TicketMapper {
+    @Mapping(source= "id",target="id")
     @Mapping(source = "dateCreation", target = "dateSignalement")
     @Mapping(source = "equipementPanne.panne.panneTitle", target = "panneTitre")
     @Mapping(source = "equipementPanne.id.description", target = "panneDescription")

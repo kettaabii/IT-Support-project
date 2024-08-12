@@ -1,5 +1,5 @@
 package com.example.ITsupport.enums;
 
 public enum StatusMat {
-    BON, PANNE
+    BON, PANNE , HORS_SERVICE
 }

@@ -6,6 +6,9 @@ import com.example.ITsupport.service.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin("*")
 @RestController
 public class TechnicianController {
     @Autowired
@@ -26,6 +29,11 @@ public class TechnicianController {
     public String deleteTechnician(@PathVariable Integer id) {
         technicianService.removeTechnician(id);
         return "success" ;
+    }
+
+    @GetMapping("admin/AvailableTechnicians")
+    public List<Technician> getAllAvailableTechnicians() {
+        return technicianService.getAvailableTechnicians();
     }
 
 

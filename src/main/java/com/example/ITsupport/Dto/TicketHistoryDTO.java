@@ -9,9 +9,11 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 @AllArgsConstructor @Getter @Setter @NoArgsConstructor
 public class TicketHistoryDTO {
+    private Integer id;
     private LocalDateTime dateSignalement;
     private String panneTitre;
     private String panneDescription;
     private StatusTicket statusTicket;
+
 
 }
