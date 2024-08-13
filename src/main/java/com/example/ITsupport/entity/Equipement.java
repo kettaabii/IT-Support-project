@@ -19,6 +19,7 @@ public class Equipement {
     @Column(name = "material-id")
     private Integer materialId;
     private String materialName;
+    private String picture;
     @Enumerated(EnumType.STRING)
     private StatusMat status;
 
@@ -28,7 +29,6 @@ public class Equipement {
     List<EquipementPanne> panneMaterialList;
 
     @ManyToOne
-
     @JsonIgnore
     User utilisateur ;
 

@@ -44,7 +44,7 @@ public class EquipementController {
        equipementService.AssignEquipemeToUser(idmat, idUser);
        return new ResponseEntity<>(HttpStatus.OK);
    }
-    @GetMapping("admin/equipementPerUser/{id}")
+    @GetMapping("shared/equipementPerUser/{id}")
     public ResponseEntity<List<Equipement>> getEquipementPerUser(@PathVariable Integer id) {
         List<Equipement> equipements = equipementService.EquipementsofUser(id);
         System.out.println(equipements.size());
