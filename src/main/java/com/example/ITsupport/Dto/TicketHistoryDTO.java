@@ -1,6 +1,7 @@
 package com.example.ITsupport.Dto;
 
 import com.example.ITsupport.enums.StatusTicket;
+import com.example.ITsupport.enums.TypePanne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class TicketHistoryDTO {
     private String panneTitre;
     private String panneDescription;
     private StatusTicket statusTicket;
+    private TypePanne typePanne;
 
 
 }

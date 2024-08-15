@@ -1,9 +1,13 @@
 package com.example.ITsupport.controller;
 
 import com.example.ITsupport.Dto.SignupRequest;
+import com.example.ITsupport.entity.User;
 import com.example.ITsupport.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 public class UserController {
@@ -26,5 +30,8 @@ public class UserController {
         return userService.removeUser(id);
     }
 
-
+    @GetMapping("admin/AllUsers")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
 }

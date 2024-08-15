@@ -1,5 +1,6 @@
 package com.example.ITsupport.entity;
 
+import com.example.ITsupport.enums.inDuty;
 import com.example.ITsupport.enums.role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 
 public class Technician extends Person {
-    private Boolean available =true;
+  @Enumerated(EnumType.STRING)
+  private inDuty inDuty;
     @OneToMany(mappedBy = "technician")
     private List<Ticket> tickets;
 

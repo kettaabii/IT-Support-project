@@ -26,7 +26,8 @@ public class TicketController {
     public List<Ticket> getAssignedTickets(@PathVariable Integer id) {
         return ticketService.getAssignedTickets(id);
     }
-    @GetMapping("admin/TicketsHistoryForMat/{id}")
+
+    @GetMapping("shared/TicketsHistoryForMat/{id}")
     public List<TicketHistoryDTO> getTicketsHistoryForMat(@PathVariable Integer id) {
         return ticketService.findTicketHistoryForMat(id);
     }

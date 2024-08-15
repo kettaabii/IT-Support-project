@@ -36,6 +36,10 @@ public class TechnicianController {
         return technicianService.getAvailableTechnicians();
     }
 
+    @GetMapping("admin/AllTechnicians")
+    public List<Technician> getAllTechnicians() {
+        return technicianService.getAllTechnicians();
+    }
 
 
 

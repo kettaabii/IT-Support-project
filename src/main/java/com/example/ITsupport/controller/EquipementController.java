@@ -39,7 +39,7 @@ public class EquipementController {
         List<Equipement> equipements = equipementService.getAllEquipements();
         return new ResponseEntity<>(equipements, HttpStatus.OK);
    }
-   @PutMapping("admin/AssignEquipement{idMat}/ToUser/{idUser}")
+   @PutMapping("admin/AssignEquipement/{idMat}/ToUser/{idUser}")
     public ResponseEntity<Equipement> assignEquipementToUser(@PathVariable("idMat") Integer idmat ,@PathVariable("idUser") Integer idUser) {
        equipementService.AssignEquipemeToUser(idmat, idUser);
        return new ResponseEntity<>(HttpStatus.OK);

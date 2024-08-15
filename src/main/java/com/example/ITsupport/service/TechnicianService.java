@@ -4,6 +4,7 @@ import com.example.ITsupport.Dto.SignupRequest;
 import com.example.ITsupport.entity.Admin;
 import com.example.ITsupport.entity.Person;
 import com.example.ITsupport.entity.Technician;
+import com.example.ITsupport.enums.inDuty;
 import com.example.ITsupport.enums.role;
 import com.example.ITsupport.repository.PersonRepository;
 import com.example.ITsupport.repository.TechnicianRepository;
@@ -36,6 +37,7 @@ public class TechnicianService {
         user.setPhone(signupRequest.phone());
         user.setPassword(hashedPassword);
         user.setRole(role.TECHNICIAN);
+        user.setInDuty(inDuty.DISPONIBLE);
 
         technicianRepository.save(user);
     }
@@ -58,6 +60,12 @@ public class TechnicianService {
 
 
     public List<Technician> getAvailableTechnicians() {
-        return technicianRepository.findAllByAvailableIsTrue();
+
+        return technicianRepository.findAllByInDutyIs(inDuty.DISPONIBLE);
+    }
+
+    public List<Technician> getAllTechnicians() {
+
+        return technicianRepository.findAll();
     }
 }

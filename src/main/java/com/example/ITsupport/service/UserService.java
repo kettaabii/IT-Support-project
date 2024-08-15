@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
+
 import static net.andreinc.mockneat.types.enums.StringType.ALPHA_NUMERIC;
 import static net.andreinc.mockneat.types.enums.StringType.HEX;
 import static net.andreinc.mockneat.unit.text.Strings.strings;
@@ -24,9 +26,7 @@ public class UserService {
 
 
     public String newUser(SignupRequest signupRequest){
-//        String password =strings().size(6).types(ALPHA_NUMERIC, HEX).get();
         String hashedPassword = passwordEncoder.encode(signupRequest.password());
-//       String hashedPassword = passwordEncoder.encode(password);
         User user = new User();
         user.setUsername(signupRequest.username());
         user.setPhone(signupRequest.phone());
@@ -55,5 +55,9 @@ public class UserService {
 
     public User findUserById(Integer id) {
         return userRepository.findById(id).get();
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

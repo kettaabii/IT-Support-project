@@ -88,4 +88,9 @@ public class PanneService {
     public List<Panne> findAll() {
         return panneRepository.findAll();
     }
+
+    public void deletePanne(Integer id) {
+        Panne panne = getPanneById(id);
+        panneRepository.delete(panne);
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.ITsupport.controller;
 
+import com.example.ITsupport.entity.Equipement;
 import com.example.ITsupport.entity.EquipementPanne;
 import com.example.ITsupport.entity.Panne;
 import com.example.ITsupport.entity.PanneEquipementkey;
@@ -7,6 +8,7 @@ import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.service.EquipementPanneService;
 import com.example.ITsupport.service.PanneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,6 +61,12 @@ public class PanneController {
         List<Panne> pannes = panneService.findAll();
         return ResponseEntity.ok(pannes);
     }
+    @DeleteMapping("admin/deletePanne/{id}")
+    public ResponseEntity<Equipement>  deletePanne(@PathVariable Integer id){
+        panneService.deletePanne(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 

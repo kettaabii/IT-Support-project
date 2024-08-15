@@ -2,6 +2,7 @@ package com.example.ITsupport.service;
 
 import com.example.ITsupport.entity.Equipement;
 import com.example.ITsupport.entity.User;
+import com.example.ITsupport.enums.StatusMat;
 import com.example.ITsupport.exeption.EquipmentNotFoundException;
 import com.example.ITsupport.repository.EquipementPanneRepository;
 import com.example.ITsupport.repository.EquipementRepository;
@@ -56,6 +57,7 @@ public class EquipementService {
         User user = userRepository.findById(idUser).get();
         System.out.println(user.getId()+"methode assigner user id");
         equipement.setUtilisateur(user);
+        equipement.setStatus(StatusMat.BON);
         equipementRepository.save(equipement);
         return "sucessfully assigned";
     }
